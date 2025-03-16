@@ -28,17 +28,64 @@ A modern, responsive blog and portfolio website built with **Next.js 13**, **Typ
 ## 📂 Project Structure  
 
 ```bash
-next-blogs/
-├── app/
-│   ├── (Dashboard)/
-│   ├── api/
-│   ├── auth/
-│   └── blog/
-├── components/
-├── lib/
-├── models/
-├── public/
-└── types/
+📂 tutorlink-project
+├── 📂 public
+├── 📂 src
+│   ├── 📂 components
+│   │   ├── 📂 common
+│   │   ├── 📂 client
+│   │   ├── 📂 admin
+│   │   ├── 📂 student
+│   │   └── 📂 tutor
+│   ├── 📂 hooks
+│   ├── 📂 layouts
+│   │   ├── ClientLayout.tsx
+│   │   ├── AdminLayout.tsx
+│   │   ├── StudentLayout.tsx
+│   │   └── TutorLayout.tsx
+│   ├── 📂 pages
+│   │   ├── 📂 api
+│   │   ├── 📂 client
+│   │   │   ├── index.tsx
+│   │   │   ├── login.tsx
+│   │   │   └── dashboard.tsx
+│   │   ├── 📂 admin
+│   │   │   ├── index.tsx
+│   │   │   ├── users.tsx
+│   │   │   └── reports.tsx
+│   │   ├── 📂 student
+│   │   │   ├── index.tsx
+│   │   │   ├── assignments.tsx
+│   │   │   └── grades.tsx
+│   │   ├── 📂 tutor
+│   │   │   ├── index.tsx
+│   │   │   ├── schedule.tsx
+│   │   │   └── feedback.tsx
+│   │   ├── _app.tsx
+│   │   ├── _document.tsx
+│   │   └── index.tsx
+│   ├── 📂 services
+│   │   ├── authService.ts
+│   │   ├── userService.ts
+│   │   └── apiService.ts
+│   ├── 📂 store
+│   │   ├── authSlice.ts
+│   │   ├── userSlice.ts
+│   │   └── store.ts
+│   ├── 📂 utils
+│   │   ├── constants.ts
+│   │   ├── helpers.ts
+│   │   └── validations.ts
+│   ├── 📂 types
+│   │   ├── user.ts
+│   │   └── auth.ts
+├── .env
+├── .gitignore
+├── next.config.js
+├── package.json
+├── tsconfig.json
+└── README.md
+
 ```
 
 ---

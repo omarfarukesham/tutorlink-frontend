@@ -1,9 +1,8 @@
-import TutorLayout from '@/layouts/TutorLayout';
 
 export default function availability() {
   return (
-    <TutorLayout>
+    <div>
       <h1>Tutor availability</h1>
-    </TutorLayout>
+    </div>
   );
 }

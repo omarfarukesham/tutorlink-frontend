@@ -1,23 +1,47 @@
 // src/layouts/AdminLayout.tsx
 
+// src/layouts/StudentLayout.tsx
+
+// src/layouts/AdminLayout.tsx
+
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { RootState } from '@/store/store';
 import Navbar from '@/components/Navbar';
 import Sidebar from '@/components/Sidebar';
-import { ReactNode } from 'react';
+import NotFoundPage from '@/pages/not-found';
 
+const AdminLayout = ({ children }: { children: React.ReactNode }) => {
+  const { user } = useSelector((state: RootState) => state.auth);
+  const router = useRouter();
+  console.log(user);
 
-type Props = {
-  children: ReactNode;
-};
+  useEffect(() => {
+    if (!user || user.role !== 'admin') {
+      router.push('/client/login');
+    }
+  }, [user, router]);
 
-export default function AdminLayout({ children }: Props) {
+  if (!user || user.role !== 'admin') {
+    return <NotFoundPage />;
+  }
+
   return (
-    <div className="flex min-h-screen">
+    <div>
+      <Navbar />
       <Sidebar />
-      <div className="flex-1 flex flex-col">
-        <Navbar />
-        <main className="p-4">{children}</main>
-      </div>
+      {children}
     </div>
   );
-}
+};
+
+
+
+
+
+
+
+export default AdminLayout;
+
 

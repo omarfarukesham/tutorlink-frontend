@@ -1,18 +1,34 @@
-// src/layouts/TutorLayout.tsx
-
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+import { RootState } from '@/store/store';
 import Navbar from '@/components/Navbar';
-import { ReactNode } from 'react';
-// import TutorSidebar from '@/components/tutor/TutorSidebar';
+import Sidebar from '@/components/Sidebar';
 
-type Props = {
-  children: ReactNode;
-};
+const TutorLayout = ({ children }: { children: React.ReactNode }) => {
+  const { user } = useSelector((state: RootState) => state.auth);
+  const router = useRouter();
 
-export default function TutorLayout({ children }: Props) {
+  console.log(user)
+  useEffect(() => {
+    // Check if the user is not logged in or does not have the correct role
+    if (!user || (user.role !== 'tutor' && user.role !== 'admin')) {
+      router.push('/client/login');
+    }
+  }, [user, router]);
+
+  // If the user is not logged in or does not have the correct role, return null
+  if (!user || (user.role !== 'tutor' && user.role !== 'admin')) {
+    return null;
+  }
+
   return (
-    <div className="flex min-h-screen">
+    <div>
       <Navbar />
-      <div className="flex-1 p-4 bg-gray-50">{children}</div>
+      <Sidebar />
+      {children}
     </div>
   );
-}
+};
+
+export default TutorLayout;
