@@ -4,11 +4,11 @@ import { FaUser, FaEnvelope, FaComment } from 'react-icons/fa';
 import contactImg from '@/assets/contact.jpg';
 import ClientLayout from '@/layouts/ClientLayout';
 
-const ContactSection = () => {
+const ContactPage = () => {
   return (
     <ClientLayout> 
       <section className="w-full mx-auto  bg-white">
-        <h2 className="text-3xl font-bold text-gray-900 text-center">Get in Touch</h2>
+        <h2 className="text-3xl font-bold text-gray-900 text-center">Your Message</h2>
         <div className="flex flex-col md:flex-row bg-whites overflow-hidden">
           {/* Left Side - Image */}
           <div className="md:w-1/2 ">
@@ -74,4 +74,4 @@ const ContactSection = () => {
   );
 };
 
-export default ContactSection;
+export default ContactPage;

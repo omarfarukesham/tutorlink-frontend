@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { RootState } from '@/store/store';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/client/Navbar';
 import Sidebar from '@/components/Sidebar';
 
 const TutorLayout = ({ children }: { children: React.ReactNode }) => {

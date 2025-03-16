@@ -1,48 +1,25 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { FaSignOutAlt } from 'react-icons/fa';
+import { RootState } from '@/store/store';
+import { logout } from '@/store/authSlice';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  interface User {
-    email: string;
-  }
+  const dispatch = useDispatch();
 
-  const [user, setUser] = useState<User | null>(null);
-
-  useEffect(() => {
-    // Check auth status on mount and when storage changes
-    const checkAuth = () => {
-      const authUser = sessionStorage.getItem('authUser');
-      setUser(authUser ? JSON.parse(authUser) : null);
-    };
-
-    // Initial check
-    checkAuth();
-
-    // Listen for storage changes
-    window.addEventListener('storage', checkAuth);
-    
-    // Custom event listener for login/logout
-    window.addEventListener('authChange', checkAuth);
-
-    return () => {
-      window.removeEventListener('storage', checkAuth);
-      window.removeEventListener('authChange', checkAuth);
-    };
-  }, []); 
+  const user = useSelector((state: RootState) => state.auth.user);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const handleLogout = () => {
-    sessionStorage.removeItem('authUser');
-    setUser(null); 
-    window.dispatchEvent(new Event('authChange'));
+    dispatch(logout());
   };
 
   return (
-    <nav className="lg:w-[90%] mx-auto flex items-center justify-between bg-gray-800 text-white px-4 sticky top-0 z-20 border-b border-gray-700">
+    <nav className="lg:w-[100%] mx-auto w-full flex items-center justify-between bg-gray-800 text-white sticky top-0 z-20 border-b px-4 border-gray-700">
       <div className="flex items-center">
         <button
           onClick={toggleMenu}
@@ -59,73 +36,87 @@ const Navbar = () => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
           </svg>
         </button>
-        <Link href="/" className="ml-4">
-          <p className='text-xl p-2'>TutorLink 🎓</p>
+        <Link href="/" className="">
+          <p className="text-xl p-2">TutorLink 🎓</p>
         </Link>
       </div>
 
+      {/* Desktop Menu */}
       <ul className="hidden lg:flex space-x-6">
         <li className="hover:text-gray-300">
           <Link href="/">Home</Link>
         </li>
         <li className="hover:text-gray-300">
-          <Link href="/tutor">Tutor</Link>
+          <Link href="/tutor-list">Tutor</Link>
         </li>
         <li className="hover:text-gray-300">
-          <Link href="/student">Student</Link>
+          <Link href="/community">Communities</Link>
         </li>
         <li className="hover:text-gray-300">
-            <Link href="/admin">Admin</Link>
-          </li>
+          <Link href="/tutor-apply">Become Tutor</Link>
+        </li>
+        <li className="hover:text-gray-300">
+          <Link href="/contact">Query</Link>
+        </li>
+        {user?.role === 'tutor' && (
           <li className="hover:text-gray-300">
-            <Link href="/contact">Suggestion</Link>
+            <Link href="/tutor">Dashboard</Link>
           </li>
-        {user && (
+        )}
+        {user?.role === 'student' && (
           <li className="hover:text-gray-300">
-            <Link href="/">Dashboard</Link>
+            <Link href="/student">Dashboard</Link>
+          </li>
+        )}
+        {user?.role === 'admin' && (
+          <li className="hover:text-gray-300">
+            <Link href="/admin">Dashboard</Link>
           </li>
         )}
       </ul>
 
+      {/* Desktop Auth Section */}
       <div className="hidden lg:flex space-x-4 items-center">
         {user ? (
-          <>
-            <button
-              onClick={handleLogout}
-              className="border border-white text-white flex items-center gap-2 px-2 py-1 rounded-lg bg-transparent hover:bg-red-500 transition duration-200"
-            >
-              <FaSignOutAlt className="h-4 w-4" />
-              Logout
-            </button>
-          </>
+          <button
+            onClick={handleLogout}
+            className="border border-white text-white flex items-center gap-2 px-2 py-1 rounded-lg bg-transparent hover:bg-red-500 transition duration-200"
+          >
+            <FaSignOutAlt className="h-4 w-4" />
+            Logout
+          </button>
         ) : (
           <>
-            <Link href="/login" className="border border-white text-white text-xs px-2 py-1 rounded-lg hover:bg-white hover:text-gray-800 transition duration-200">
+            <Link href="/client/login" className="border border-white text-white text-xs px-2 py-1 rounded-lg hover:bg-white hover:text-gray-800 transition duration-200">
               Login
             </Link>
-            <Link href="/register" className="border border-white text-white px-2 py-1 text-xs rounded-lg hover:bg-white hover:text-gray-800 transition duration-200">
+            <Link href="/client/register" className="border border-white text-white px-2 py-1 text-xs rounded-lg hover:bg-white hover:text-gray-800 transition duration-200">
               Register
             </Link>
           </>
         )}
       </div>
 
+      {/* Mobile Menu */}
       {menuOpen && (
-        <ul className="absolute top-16 left-0 z-10 w-full bg-gray-900 text-white p-4 lg:hidden">
+        <ul className="absolute top-11 left-0 z-10 w-full bg-gray-900 text-white p-4 lg:hidden">
           <li className="py-2 px-4 hover:bg-gray-700">
             <Link href="/" onClick={toggleMenu}>Home</Link>
           </li>
           <li className="py-2 px-4 hover:bg-gray-700">
-            <Link href="/about" onClick={toggleMenu}>About Us</Link>
+            <Link href="/tutor-list" onClick={toggleMenu}>Tutors</Link>
           </li>
           <li className="py-2 px-4 hover:bg-gray-700">
             <Link href="/blogs" onClick={toggleMenu}>Blogs</Link>
           </li>
           <li className="py-2 px-4 hover:bg-gray-700">
-            <Link href="/projects" onClick={toggleMenu}>Projects</Link>
+            <Link href="/community" onClick={toggleMenu}>Communities</Link>
           </li>
           <li className="py-2 px-4 hover:bg-gray-700">
-            <Link href="/contact" onClick={toggleMenu}>Contact</Link>
+            <Link href="/tutor-apply" onClick={toggleMenu}>Become Tutor</Link>
+          </li>
+          <li className="py-2 px-4 hover:bg-gray-700">
+            <Link href="/contact" onClick={toggleMenu}>Query</Link>
           </li>
           {user ? (
             <>
@@ -139,10 +130,10 @@ const Navbar = () => {
           ) : (
             <>
               <li className="py-2 px-4 hover:bg-gray-700">
-                <Link href="/login" onClick={toggleMenu}>Login</Link>
+                <Link href="/client/login" onClick={toggleMenu}>Login</Link>
               </li>
               <li className="py-2 px-4 hover:bg-gray-700">
-                <Link href="/register" onClick={toggleMenu}>Register</Link>
+                <Link href="/client/register" onClick={toggleMenu}>Register</Link>
               </li>
             </>
           )}
