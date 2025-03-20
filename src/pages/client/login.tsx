@@ -55,8 +55,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div className="min-h-screen px-4 flex items-center justify-center bg-gradient-to-br from-gray-800 to-purple-600">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full h-[100%] max-w-md mx-auto">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Login</h1>
@@ -108,12 +108,18 @@ const LoginPage = () => {
 
           {/* Submit Button */}
           <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition shadow-md"
-          >
-            {isLoading ? 'Logging in...' : 'Login'}
-          </button>
+              type="submit"
+              disabled={isLoading}
+              className={`
+                w-full pt-2 pb-2.5 px-5 text-white rounded-md shadow-md
+                ${isLoading 
+                  ? 'bg-gray-400 cursor-not-allowed' 
+                  : 'bg-gradient-to-br from-gray-800 to-purple-600 hover:opacity-90 hover:shadow-lg transform hover:scale-[1.04] transition-all duration-200'
+                }
+              `}
+            >
+              {isLoading ? 'Logging in...' : 'Login'}
+            </button>
         </form>
       </div>
     </div>

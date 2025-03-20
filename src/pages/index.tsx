@@ -13,7 +13,7 @@ import ClientLayout from '@/layouts/ClientLayout';
 export default function Home() {
   return (
     <ClientLayout>
-        <div className="container mx-auto bg-gray-100 ">
+        <div className="lg:w-[90%] mx-auto bg-gray-400 min-h-screen">
           <UtilityBar />
           <Hero />
         </div>

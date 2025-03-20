@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { User, Mail, Lock, ChevronDown } from 'lucide-react';
 import { registerSchema, RegisterFormData } from '@/utils/validations';
 import { useRegisterMutation } from '@/services/apiService';
+import toast from 'react-hot-toast';
 
 const RegisterPage = () => {
   const {
@@ -21,8 +22,10 @@ const RegisterPage = () => {
   const onSubmit: SubmitHandler<RegisterFormData> = async (data) => {
     try {
       await registerUser(data).unwrap();
+      toast.success('Account created successfully! Please login to continue.');
       router.push('/client/login');
     } catch (err) {
+      toast.error('Registration failed. Please try again.');
       console.error('Registration failed:', err);
     }
   };
