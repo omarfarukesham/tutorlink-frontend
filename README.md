@@ -1,6 +1,6 @@
 # Next.js Blog & Portfolio Website  
 
-A modern, responsive blog and portfolio website built with **Next.js 13**, **TypeScript**, and **Tailwind CSS**.  
+A modern, responsive blog and portfolio website built with **Next.js 13**, **TypeScript**, and hello **Tailwind CSS**.  
 
 ## 🚀 Features  
 
