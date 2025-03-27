@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import teacher1 from '../../assets/teacher2.png'; 
 import teacher from '../../assets/teacher.png'; 
+import { BookIcon } from 'lucide-react';
 // import { Router } from 'next/router';
 
 // Fake data for tutors
@@ -97,13 +98,16 @@ const handleTutor=(id: number) =>{
               </button>
               <p className="font-bold text-purple-500">{tutor.price}</p>
             </div>
-            <h2 className="text-lg font-bold text-center">{tutor.subject}</h2>
+            <h2 className="text-lg text-black font-bold text-start my-5 flex items-center gap-2">
+              <BookIcon size={16}  className="text-gray-800" />
+              {tutor.subject}
+            </h2>
             <div className="text-sm text-gray-600 flex justify-between pb-4">
               <p>Rating: {tutor.rating}</p>
               <p>Impact: {tutor.impact}</p>
             </div>
             <div className="flex justify-between items-center gap-5">
-              <button className="text-xs underline text-purple-500 font-blod">
+              <button className="text-xs underline text-gray-800 font-blod">
                 See Bio
               </button>
               <button onClick={()=>handleTutor(tutor.id)} className="text-white bg-gray-800 px-4 py-1 rounded hover:bg-gradient-to-br from-gray-800 to-purple-600 hover:text-white">
