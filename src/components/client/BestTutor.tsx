@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import teacher1 from '../../assets/teacher2.png'; 
 import teacher from '../../assets/teacher.png'; 
-
+// import { Router } from 'next/router';
 
 // Fake data for tutors
 const tutors = [
@@ -69,6 +69,11 @@ const tutors = [
 ];
 
 const BestTutor = () => {
+
+const handleTutor=(id: number) =>{
+     console.log(id);
+
+  }
   return (
     <div className="mx-auto  mb-10">
       <h1 className="text-3xl font-bold text-center mb-10">Best Tutors</h1>
@@ -101,7 +106,7 @@ const BestTutor = () => {
               <button className="text-xs underline text-purple-500 font-blod">
                 See Bio
               </button>
-              <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-2 px-2 rounded text-xs flex-1">
+              <button onClick={()=>handleTutor(tutor.id)} className="text-white bg-gray-800 px-4 py-1 rounded hover:bg-gradient-to-br from-gray-800 to-purple-600 hover:text-white">
                 Booking
               </button>
             </div>
