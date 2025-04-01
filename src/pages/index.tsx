@@ -1,6 +1,7 @@
 // src/pages/index.tsx
 
 import BestTutor from '@/components/client/BestTutor';
+import BeTutor from '@/components/client/BeTutor';
 import FeatureSubject from '@/components/client/FeatureSubject';
 import BrowseCategory from '@/components/client/TopCategory';
 import UtilityBar from '@/components/client/UtilityBar';
@@ -22,6 +23,7 @@ export default function Home() {
           <BrowseCategory />
           <BestTutor />
           <FeatureSubject />
+          <BeTutor />
         </div>
     </ClientLayout>
   );
