@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/router';
 import { User, Mail, Lock, ChevronDown } from 'lucide-react';
 import { registerSchema, RegisterFormData } from '@/utils/validations';
-import { useRegisterMutation } from '@/services/apiService';
+import { useRegisterMutation } from '@/services/authService';
 import toast from 'react-hot-toast';
 
 const RegisterPage = () => {
@@ -118,7 +118,6 @@ const RegisterPage = () => {
               >
                 <option value="student">Student</option>
                 <option value="tutor">Tutor</option>
-                <option value="admin">Admin</option>
               </select>
             </div>
             {errors.role && (

@@ -9,7 +9,7 @@ import { toast } from 'react-hot-toast';
 import { Mail, Lock } from 'lucide-react';
 import { loginSchema, LoginFormData } from '@/utils/validations';
 import { verifyToken } from '@/utils/verifyToken';
-import { useLoginMutation } from '@/services/apiService';
+import { useLoginMutation } from '@/services/authService';
 import { loginSuccess } from '@/store/authSlice';
 
 const LoginPage = () => {

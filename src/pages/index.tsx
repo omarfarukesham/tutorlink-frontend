@@ -3,6 +3,7 @@
 import BestTutor from '@/components/client/BestTutor';
 import BeTutor from '@/components/client/BeTutor';
 import FeatureSubject from '@/components/client/FeatureSubject';
+import Subscribe from '@/components/client/Subscribe';
 import BrowseCategory from '@/components/client/TopCategory';
 import UtilityBar from '@/components/client/UtilityBar';
 import Hero from '@/components/Hero';
@@ -24,6 +25,7 @@ export default function Home() {
           <BestTutor />
           <FeatureSubject />
           <BeTutor />
+          <Subscribe />
         </div>
     </ClientLayout>
   );
