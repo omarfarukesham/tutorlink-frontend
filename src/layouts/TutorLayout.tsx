@@ -3,13 +3,12 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { RootState } from '@/store/store';
 import Navbar from '@/components/client/Navbar';
-import Sidebar from '@/components/Sidebar';
+import TutorSidebar from '@/components/tutor/tutorSidebar';
 
 const TutorLayout = ({ children }: { children: React.ReactNode }) => {
   const { user } = useSelector((state: RootState) => state.auth);
   const router = useRouter();
 
-  console.log(user)
   useEffect(() => {
     // Check if the user is not logged in or does not have the correct role
     if (!user || (user.role !== 'tutor' && user.role !== 'admin')) {
@@ -23,11 +22,18 @@ const TutorLayout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-100">
       <Navbar />
-      <Sidebar />
-      {children}
+      <div className="flex">
+        <TutorSidebar />
+        <main className="flex-1 p-4 overflow-y-auto">
+          <div className="max-w-7xl mx-auto">
+            {children}
+          </div>
+        </main>
+      </div>
     </div>
+   
   );
 };
 

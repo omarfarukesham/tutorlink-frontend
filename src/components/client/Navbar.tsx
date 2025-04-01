@@ -19,7 +19,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="lg:w-[90%] sm:w-full lg:mx-auto flex items-center justify-between bg-gray-800 text-white sticky top-0 z-20 border-b px-4 border-gray-700">
+    <nav className="w-full mx-auto flex items-center justify-between bg-gray-800 text-white sticky top-0 z-20 border-b px-4 border-gray-700">
       <div className="flex items-center">
         <button
           onClick={toggleMenu}

@@ -1,9 +1,12 @@
+import TutorLayout from "@/layouts/TutorLayout";
 
 const TutorEarningPage = () => {
     return (
-        <div>
-            <h1>Tutor Earning Page</h1>
+        <TutorLayout>
+        <div className="space-y-6">
+          <h1 className="text-2xl font-bold">My Total Earning page</h1>
         </div>
+      </TutorLayout>
     );
 };
 
