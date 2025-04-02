@@ -1,10 +1,11 @@
+import AdminLayout from '@/layouts/AdminLayout';
 import React from 'react';
 
 const AdminBookingPage = () => {
     return (
-        <div>
-            <h1>Admin Booking Page</h1>
-        </div>
+        <AdminLayout>
+        <h1>Booking List from student .. </h1>
+      </AdminLayout>
     );
 };
 

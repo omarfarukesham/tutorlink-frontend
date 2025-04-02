@@ -120,9 +120,21 @@ const Navbar = () => {
           </li>
           {user ? (
             <>
-              <li className="py-2 px-4 hover:bg-gray-700">
-                <Link href="/dashboard" onClick={toggleMenu}>Dashboard</Link>
-              </li>
+              {user?.role === 'tutor' && (
+                <li className="hover:text-gray-300">
+                  <Link href="/tutor">Dashboard</Link>
+                </li>
+              )}
+              {user?.role === 'student' && (
+                <li className="hover:text-gray-300">
+                  <Link href="/student">Dashboard</Link>
+                </li>
+              )}
+              {user?.role === 'admin' && (
+                <li className="hover:text-gray-300">
+                  <Link href="/admin">Dashboard</Link>
+                </li>
+              )}
               <li className="py-2 px-4 hover:bg-red-500">
                 <button onClick={() => { handleLogout(); toggleMenu(); }}>Logout</button>
               </li>

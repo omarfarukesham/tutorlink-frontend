@@ -1,13 +1,12 @@
-
 import StudentLayout from '@/layouts/StudentLayout';
 import React from 'react';
 
-const ReviewPage = () => {
+const OrderPage = () => {
     return (
         <StudentLayout>
-        <h1>Student Review page .. </h1>
+        <h1>Order history .. </h1>
       </StudentLayout>
     );
 };
 
-export default ReviewPage;
+export default OrderPage;
