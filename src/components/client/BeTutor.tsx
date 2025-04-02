@@ -1,6 +1,7 @@
 import React from 'react'
 import tutor from '../../assets/joinNow2.png'
 import Image from 'next/image'
+import Link from 'next/link';
 
 export default function BeTutor() {
   const steps = [
@@ -29,15 +30,15 @@ export default function BeTutor() {
               <p className='text-purple-100 mb-6'>
                 Share your knowledge with students worldwide and earn money by teaching what you love.
               </p>
-              <a 
-                href="/become-tutor" 
+              <Link 
+                href="/tutor-apply" 
                 className="inline-flex items-center justify-center px-6 py-3 bg-white text-purple-700 font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200 shadow-sm"
               >
                 Start Teaching Today
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
-              </a>
+              </Link>
             </div>
         </div>
 
