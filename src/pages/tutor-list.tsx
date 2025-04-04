@@ -13,14 +13,11 @@ export default function TutorListPage() {
   const apiParams = {
     search: search as string,
     filter: filter as string,
-    // Add other query params as needed
   };
-  // Get tutors with search and filter parameters
   const { data: tutors = [], isLoading, isError } = useGetTutorsQuery(apiParams);
+  console.log(tutors)
 
-  // Navigate to tutor details
   const handleTutorClick = (tutorId: string) => {
-    // console.log(tutorId)
     router.push(`/tutor-details/${tutorId}`);
   };
 
