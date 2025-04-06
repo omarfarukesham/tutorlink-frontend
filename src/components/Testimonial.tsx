@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 import Image from 'next/image';
@@ -48,11 +48,29 @@ const testimonials = [
 ];
 
 const TestimonialPage = () => {
-  const [emblaRef] = useEmblaCarousel({ loop: true });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    loop: true,
+    align: 'center',
+    duration: 30
+  });
+
+  // Auto-play functionality
+  const autoplay = useCallback(() => {
+    if (emblaApi) {
+      emblaApi.scrollNext();
+    }
+  }, [emblaApi]);
+
+  useEffect(() => {
+    const timer = setInterval(autoplay, 3000); // Changes slide every 3 seconds
+    return () => clearInterval(timer);
+  }, [autoplay]);
 
   return (
-    <div className="w-full mx-auto  bg-[#fff] py-12">
-      <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Client Testimonials</h2>
+    <div className="w-full mx-auto bg-[#fff] py-12">
+      <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+        Student Testimonials
+      </h2>
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {testimonials.map((testimonial) => (
@@ -74,9 +92,9 @@ const TestimonialPage = () => {
                 </div>
               </div>
               <p className="text-white leading-relaxed italic">
-                <FaQuoteLeft className="inline-block text-blue-500 mr-2" />
+                <FaQuoteLeft className="inline-block text-purple-500 mr-2" />
                 {testimonial.feedback}
-                <FaQuoteRight className="inline-block text-blue-500 ml-2" />
+                <FaQuoteRight className="inline-block text-purple-500 ml-2" />
               </p>
             </div>
           ))}

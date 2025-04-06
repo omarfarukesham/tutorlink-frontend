@@ -28,7 +28,7 @@ export default function TutorListPage() {
   return (
     <> 
     <Head>
-        <title>Tutor | TutorLink</title>
+        <title>Tutor | TutorList</title>
         <meta name="description" content="Browse our qualified tutors and find the perfect match for your learning needs" />
       </Head>
     <ClientLayout>

@@ -22,6 +22,12 @@ const TutorLayout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
+    <> 
+    <head>
+      <title>Tutor || Dashboard</title>
+      <meta name="description" content="Tutor Dashboard" />
+      <link rel="icon" href="/favicon.ico" />
+    </head>
     <div className="min-h-screen bg-gray-100">
       <Navbar />
       <div className="flex">
@@ -33,6 +39,7 @@ const TutorLayout = ({ children }: { children: React.ReactNode }) => {
         </main>
       </div>
     </div>
+    </>
    
   );
 };
