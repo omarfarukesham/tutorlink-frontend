@@ -1,14 +1,19 @@
 import ClientLayout from '@/layouts/ClientLayout'
 import { useRouter } from 'next/router';
-import React from 'react'
+import React, { useState } from 'react'
 import { useGetSingleTutorQuery } from '@/services/tutorService';
 import Image from 'next/image';
 import Loader from '@/pages/tutor/isLoading';
 import avator from '@/assets/avator.png';
 import { FaBook, FaClock, FaDollarSign, FaEnvelope } from 'react-icons/fa';
 import { BoxIcon } from 'lucide-react';
+import BookingModal from '@/components/modal/BookingModal';
+import MessageModal from '@/components/modal/MessageModal';
+import Head from 'next/head';
 
 export default function TutorDetailsPage() {
+    const [isBookingOpen, setIsBookingOpen] = useState(false);
+    const [isMessageOpen, setIsMessageOpen] = useState(false);
     const router = useRouter();
     const { tutorId } = router.query;
 
@@ -23,6 +28,11 @@ export default function TutorDetailsPage() {
     if (!tutor) return <div>No tutor found</div>;
 
     return (
+        <> 
+        <Head>
+            <title>Tutor Details | TutorLink</title>
+            <meta name="description" content="View detailed information about the tutor" />
+        </Head>
         <ClientLayout>
             <div className="container mx-auto px-4 py-8">
                 <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
@@ -109,16 +119,36 @@ export default function TutorDetailsPage() {
 
                         {/* Action Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                            <button className="bg-gradient-to-r from-purple-600 to-gray-800 text-white font-medium py-2 px-6 rounded-lg transition duration-200">
+                            <button 
+                             onClick={() => setIsBookingOpen(true)}
+                            className="bg-gradient-to-r from-purple-600 to-gray-800 text-white font-medium py-2 px-6 rounded-lg transition duration-200">
                                 Book a Session
                             </button>
-                            <button className="border border-purple-600 text-gray-600 hover:bg-blue-50 font-medium py-2 px-6 rounded-lg transition duration-200">
+                            <button 
+                            onClick={() => setIsMessageOpen(true)}
+                            className="border border-purple-600 text-gray-600 hover:bg-blue-50 font-medium py-2 px-6 rounded-lg transition duration-200">
                                 Send Message
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+            {/* Booking Modal */}
+            <BookingModal 
+                tutor={tutor} 
+                isOpen={isBookingOpen} 
+                closeModal={() => setIsBookingOpen(false)} 
+            />
+      
+            <MessageModal 
+                tutor={tutor} 
+                isOpen={isMessageOpen} 
+                closeModal={() => setIsMessageOpen(false)} 
+            />
         </ClientLayout>
+
+        </>
     )
 }

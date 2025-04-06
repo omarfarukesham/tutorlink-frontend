@@ -4,6 +4,7 @@ import { useGetTutorsQuery } from '@/services/tutorService';
 import { useRouter } from 'next/router';
 import TutorCard from '@/components/tutorCard';
 import Loader from './tutor/isLoading';
+import Head from 'next/head';
 
 export default function TutorListPage() {
   const router = useRouter();
@@ -25,6 +26,11 @@ export default function TutorListPage() {
   if (isError) return <div>Error loading tutors</div>;
 
   return (
+    <> 
+    <Head>
+        <title>Tutor | TutorLink</title>
+        <meta name="description" content="Browse our qualified tutors and find the perfect match for your learning needs" />
+      </Head>
     <ClientLayout>
       <div className="container mx-auto px-4 py-8">
       {/* <FilterSidebar /> */}
@@ -49,6 +55,7 @@ export default function TutorListPage() {
         </div>
       </div>
     </ClientLayout>
+    </>
   );
 }
 
