@@ -4,7 +4,17 @@ import { Tutor } from '@/types/tutor';
 
 export const tutorApi = createApi({
   reducerPath: 'tutorApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://tutorlink-server-sigma.vercel.app/api/' }),
+  baseQuery: fetchBaseQuery({ 
+    baseUrl: 'https://tutorlink-server-sigma.vercel.app/api/',
+    credentials: 'include',
+    prepareHeaders: (headers) => {
+      const token = sessionStorage.getItem('userToken');
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
   endpoints: (builder) => ({
     getTutors: builder.query<Tutor[], Record<string, unknown>>({
       query: (params) => ({
@@ -28,10 +38,23 @@ export const tutorApi = createApi({
       }),
       transformResponse: (response: { data: Tutor }) => response.data,
     }),
+
+    createTutor: builder.mutation<Tutor, Partial<Tutor>>({
+      query: (newTutor) => ({
+        url: 'tutor',
+        method: 'POST',
+        body: newTutor,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }),
+      transformResponse: (response: { data: Tutor; message: string }) => response.data,
+    }),
   }),
 });
 
 export const { 
   useGetTutorsQuery,
-  useGetSingleTutorQuery 
+  useGetSingleTutorQuery,
+  useCreateTutorMutation 
 } = tutorApi;

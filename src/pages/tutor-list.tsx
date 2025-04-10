@@ -42,7 +42,7 @@ export default function TutorListPage() {
               <TutorCard 
                 key={tutor._id} 
                 tutor={tutor} 
-                onClick={() => handleTutorClick(tutor._id)}
+                onClick={() => tutor._id && handleTutorClick(tutor._id)}
               />
             ))}
           </div>

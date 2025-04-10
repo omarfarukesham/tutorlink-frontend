@@ -6,24 +6,24 @@ export interface Subject {
     category: string;
     createdAt: string;
     updatedAt: string;
-    __v: number;
+   
   }
   
   export interface Availability {
+    _id?: string;
     day: string;
     startTime: string;
     endTime: string;
-    _id: string;
+  
   }
   
   export interface User {
-    _id: string;
     name: string;
     email: string;
   }
   
   export interface Tutor {
-    _id: string;
+    _id?: string;
     user: User;
     bio: string;
     subjects: Subject[];

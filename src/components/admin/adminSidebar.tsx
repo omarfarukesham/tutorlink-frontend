@@ -1,7 +1,7 @@
 import { BookImageIcon } from "lucide-react";
 import Link from "next/link";
 import { FaUser, FaCog, FaHome } from "react-icons/fa";
-import { FaMessage, FaMoneyBills } from "react-icons/fa6";
+import { FaAddressBook, FaMessage, FaMoneyBills } from "react-icons/fa6";
 
 const AdminSidebar = () => {
   return (
@@ -32,6 +32,15 @@ const AdminSidebar = () => {
           >
             <FaMessage className="h-5 w-5" />
             <span className="hidden md:inline">Client Msg</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/admin/addTutor"
+            className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-200 text-gray-700"
+          >
+            <FaAddressBook className="h-5 w-5" />
+            <span className="hidden md:inline">Add Tutor</span>
           </Link>
         </li>
         <li>

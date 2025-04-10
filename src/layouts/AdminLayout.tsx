@@ -15,7 +15,6 @@ import AdminSidebar from '@/components/admin/adminSidebar';
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   const { user } = useSelector((state: RootState) => state.auth);
   const router = useRouter();
-  console.log(user);
 
   useEffect(() => {
     if (!user || user.role !== 'admin') {

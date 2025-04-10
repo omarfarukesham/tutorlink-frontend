@@ -21,7 +21,7 @@ const TutorSidebar = () => {
             className="flex items-center space-x-2 p-3 rounded-md hover:bg-gray-200 text-gray-700"
           >
             <FaUser className="h-5 w-5" />
-            <span>Tutor Profile</span>
+            <span>Add Profile</span>
           </Link>
         </li>
         <li>
